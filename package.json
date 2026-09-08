@@ -1,0 +1,16 @@
+{
+  "name": "icon-octagon-cage",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An icon design playground",
+  "scripts": {
+    "build:gpt": "node tools/build-gpt.js"
+  },
+  "devDependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "@babel/core": "7.26.10",
+    "@babel/preset-react": "7.26.3",
+    "@babel/plugin-transform-modules-commonjs": "7.26.3"
+  }
+}

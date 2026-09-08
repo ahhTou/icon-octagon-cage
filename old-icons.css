@@ -1,0 +1,944 @@
+
+
+.glyph {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+
+.chip {
+  fill: color-mix(in srgb, var(--entity-glyph-accent) 12%, transparent);
+  stroke: color-mix(in srgb, var(--entity-glyph-accent) 22%, transparent);
+  stroke-width: 1;
+}
+
+.glyph[data-theme="dark"] .chip {
+  fill: color-mix(in srgb, var(--entity-glyph-accent) 16%, transparent);
+  stroke: color-mix(in srgb, var(--entity-glyph-accent) 30%, transparent);
+}
+
+.art {
+  fill: none;
+  stroke: var(--entity-glyph-accent);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+.bare .art {
+  stroke: currentColor;
+  stroke-width: 3.25;
+}
+
+
+.fill {
+  fill: var(--entity-glyph-accent);
+  stroke: none;
+}
+
+.bare .fill {
+  fill: currentColor;
+}
+
+
+.faint {
+  opacity: 0.35;
+}
+
+
+
+.sweep {
+  transform-origin: 28px 28px;
+  animation: entityGlyphSweep 4.5s linear infinite;
+}
+
+@keyframes entityGlyphSweep {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.blip {
+  animation: entityGlyphBlip 4.5s ease-in-out infinite;
+}
+
+.blipTwo {
+  animation-delay: 2.2s;
+}
+
+@keyframes entityGlyphBlip {
+  0%,
+  55%,
+  100% {
+    opacity: 0.45;
+  }
+
+  20% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glyph * {
+    animation: none !important;
+  }
+}
+
+
+
+.skeu {
+
+}
+
+.tile {
+  stroke: var(--eg-tile-line);
+  stroke-width: 1;
+}
+
+
+.paletteObject {
+  --eg-tile-1: #f5f8fc;
+  --eg-tile-2: #e6eef8;
+  --eg-paper-1: #ffffff;
+  --eg-paper-2: #e4edf8;
+  --eg-back: #d5e2f2;
+  --eg-fold-1: #cbdcf1;
+  --eg-fold-2: #a1bfe2;
+  --eg-shadow: #a9bdd8;
+}
+
+.glyph[data-theme="dark"].paletteObject {
+  --eg-tile-1: #2a3442;
+  --eg-tile-2: #1d2631;
+
+  --eg-paper-1: #f6f9fd;
+  --eg-paper-2: #cfdbe9;
+  --eg-back: #bdccdf;
+  --eg-fold-1: #d3e0f0;
+  --eg-fold-2: #a8bed9;
+  --eg-shadow: #10161f;
+}
+
+
+.paletteRelationship {
+  --eg-tile-1: #edf7f1;
+  --eg-tile-2: #d3eadf;
+  --eg-tile-line: rgba(30, 110, 80, 0.16);
+  --eg-gloss-1: rgba(255, 255, 255, 0.5);
+  --eg-gloss-2: rgba(255, 255, 255, 0);
+  --eg-paper-1: #ffffff;
+  --eg-paper-2: #e8f1ec;
+  --eg-paper-edge: #bccfc6;
+  --eg-plate-1: #ffffff;
+  --eg-plate-2: #def2ea;
+  --eg-plate-edge: #9fd2c0;
+  --eg-cord: #5e8c7c;
+  --eg-bead-1: #4fc49e;
+  --eg-bead-2: #0e8a72;
+  --eg-accent: #0f9b7e;
+}
+
+.glyph[data-theme="dark"].paletteRelationship {
+  --eg-tile-1: #243730;
+  --eg-tile-2: #182521;
+  --eg-tile-line: rgba(255, 255, 255, 0.13);
+  --eg-gloss-1: rgba(255, 255, 255, 0.12);
+  --eg-gloss-2: rgba(255, 255, 255, 0);
+  --eg-paper-1: #f4faf7;
+  --eg-paper-2: #d5e5dc;
+  --eg-paper-edge: #9bb5aa;
+  --eg-plate-1: #f4fbf8;
+  --eg-plate-2: #d8ebe2;
+  --eg-plate-edge: #93bfb1;
+  --eg-cord: #7fa596;
+  --eg-bead-1: #4fd3a9;
+  --eg-bead-2: #1a9a7e;
+  --eg-accent: #2fbe9c;
+}
+
+
+.paletteTag {
+  --eg-tile-1: #fbf4e6;
+  --eg-tile-2: #efe0c2;
+  --eg-tile-line: rgba(140, 105, 40, 0.18);
+  --eg-gloss-1: rgba(255, 255, 255, 0.5);
+  --eg-gloss-2: rgba(255, 255, 255, 0);
+  --eg-body-1: #f9eacc;
+  --eg-body-2: #e8cd9c;
+  --eg-body-edge: #c6a468;
+  --eg-ink: #8a6a33;
+  --eg-metal-1: #eaeef4;
+  --eg-metal-2: #9fabbc;
+  --eg-metal-edge: #7e8a9b;
+}
+
+.glyph[data-theme="dark"].paletteTag {
+  --eg-tile-1: #39311f;
+  --eg-tile-2: #261f13;
+  --eg-tile-line: rgba(255, 255, 255, 0.12);
+  --eg-gloss-1: rgba(255, 255, 255, 0.12);
+  --eg-gloss-2: rgba(255, 255, 255, 0);
+
+  --eg-body-1: #f6e4bf;
+  --eg-body-2: #e3c48d;
+  --eg-body-edge: #b3925a;
+  --eg-ink: #7c5f2c;
+  --eg-metal-1: #dde3ec;
+  --eg-metal-2: #8b97a8;
+  --eg-metal-edge: #6b7686;
+}
+
+
+.paletteScan {
+  --eg-tile-1: #e9f2ef;
+  --eg-tile-2: #cfe2da;
+  --eg-tile-line: rgba(30, 90, 75, 0.16);
+  --eg-gloss-1: rgba(255, 255, 255, 0.5);
+  --eg-gloss-2: rgba(255, 255, 255, 0);
+  --eg-screen-1: #275048;
+  --eg-screen-2: #0e2521;
+  --eg-bezel: #43695e;
+  --eg-sweep: #3fd9a0;
+  --eg-blip: #8cf5cb;
+}
+
+.glyph[data-theme="dark"].paletteScan {
+  --eg-tile-1: #1f2c2a;
+  --eg-tile-2: #131e1b;
+  --eg-tile-line: rgba(255, 255, 255, 0.12);
+  --eg-gloss-1: rgba(255, 255, 255, 0.1);
+  --eg-gloss-2: rgba(255, 255, 255, 0);
+  --eg-screen-1: #2c5a50;
+  --eg-screen-2: #102824;
+  --eg-bezel: #4f7a6c;
+  --eg-sweep: #4ae3ab;
+  --eg-blip: #9af7d3;
+}
+
+
+.paletteSchema {
+  --eg-tile-1: #fbf6ea;
+  --eg-tile-2: #eee2c6;
+  --eg-tile-line: rgba(130, 100, 45, 0.16);
+  --eg-gloss-1: rgba(255, 255, 255, 0.5);
+  --eg-gloss-2: rgba(255, 255, 255, 0);
+  --eg-board-1: #fffdf6;
+  --eg-board-2: #f2e7cd;
+  --eg-board-edge: #d5c096;
+  --eg-metal-1: #eaeef4;
+  --eg-metal-2: #9fabbc;
+  --eg-metal-edge: #7e8a9b;
+  --eg-ink: #7a6a45;
+  --eg-check: #3e9e6a;
+}
+
+.glyph[data-theme="dark"].paletteSchema {
+  --eg-tile-1: #342e1f;
+  --eg-tile-2: #241e12;
+  --eg-tile-line: rgba(255, 255, 255, 0.12);
+  --eg-gloss-1: rgba(255, 255, 255, 0.11);
+  --eg-gloss-2: rgba(255, 255, 255, 0);
+  --eg-board-1: #fdf8ea;
+  --eg-board-2: #eadcba;
+  --eg-board-edge: #b9a276;
+  --eg-metal-1: #dde3ec;
+  --eg-metal-2: #8b97a8;
+  --eg-metal-edge: #6b7686;
+  --eg-ink: #6f6040;
+  --eg-check: #37925f;
+}
+
+
+.paletteCategory {
+  --eg-tile-1: #faf3e4;
+  --eg-tile-2: #eee0c0;
+  --eg-tile-line: rgba(140, 100, 35, 0.18);
+  --eg-gloss-1: rgba(255, 255, 255, 0.5);
+  --eg-gloss-2: rgba(255, 255, 255, 0);
+  --eg-back-1: #e8b25c;
+  --eg-back-2: #cf9438;
+  --eg-back-edge: #b07f2c;
+  --eg-front-1: #f6d289;
+  --eg-front-2: #e5b45a;
+  --eg-front-edge: #c1903a;
+  --eg-paper-1: #fffdf6;
+  --eg-paper-2: #f2e9d2;
+  --eg-paper-edge: #d8c9a4;
+  --eg-ridge: #b0760f;
+}
+
+.glyph[data-theme="dark"].paletteCategory {
+  --eg-tile-1: #372f1d;
+  --eg-tile-2: #262014;
+  --eg-tile-line: rgba(255, 255, 255, 0.12);
+  --eg-gloss-1: rgba(255, 255, 255, 0.11);
+  --eg-gloss-2: rgba(255, 255, 255, 0);
+
+  --eg-back-1: #d9a24c;
+  --eg-back-2: #bd8330;
+  --eg-back-edge: #9c6f26;
+  --eg-front-1: #eec67b;
+  --eg-front-2: #d3a34c;
+  --eg-front-edge: #a87e32;
+  --eg-paper-1: #fdf8ea;
+  --eg-paper-2: #e9dcc0;
+  --eg-paper-edge: #c2b28c;
+  --eg-ridge: #a06c0e;
+}
+
+
+.paletteEntity {
+  --eg-tile-1: #eff9f5;
+  --eg-tile-2: #dcf0e7;
+  --eg-pill-1: #a2e4d0;
+  --eg-pill-2: #4fbf9f;
+  --eg-ink: #0d6b59;
+  --eg-shadow: #aadcc9;
+}
+
+.glyph[data-theme="dark"].paletteEntity {
+  --eg-tile-1: #21322d;
+  --eg-tile-2: #16221e;
+  --eg-pill-1: #8fdcc5;
+  --eg-pill-2: #3cb08e;
+  --eg-ink: #0a5747;
+  --eg-shadow: #0e1a16;
+}
+
+
+.paletteSource {
+  --eg-tile-1: #edf1f8;
+  --eg-tile-2: #d8dfec;
+  --eg-body-1: #ecf1f8;
+  --eg-body-2: #aebdd4;
+  --eg-rim: #ffffff;
+  --eg-plug-1: #9aa9e8;
+  --eg-plug-2: #6e80cc;
+  --eg-shadow: #9faec7;
+}
+
+.glyph[data-theme="dark"].paletteSource {
+  --eg-tile-1: #262d3c;
+  --eg-tile-2: #1a2029;
+
+  --eg-body-1: #f2f5fa;
+  --eg-body-2: #ccd5e3;
+  --eg-rim: #fbfcfe;
+  --eg-plug-1: #8b9ade;
+  --eg-plug-2: #5f72bd;
+  --eg-shadow: #10141c;
+}
+
+
+.paletteDatatype {
+  --eg-tile-1: #faf0ea;
+  --eg-tile-2: #f1dfd2;
+  --eg-body-1: #dca88f;
+  --eg-body-2: #b26e4d;
+  --eg-symbol: #fbefe6;
+  --eg-shadow: #d9b3a0;
+}
+
+.glyph[data-theme="dark"].paletteDatatype {
+  --eg-tile-1: #382e1e;
+  --eg-tile-2: #272016;
+  --eg-body-1: #d09a80;
+  --eg-body-2: #a96645;
+  --eg-symbol: #fbe9dd;
+  --eg-shadow: #171009;
+}
+
+
+
+
+.glyph {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.chip {
+  fill: color-mix(in srgb, var(--metric-glyph-accent) 12%, transparent);
+  stroke: color-mix(in srgb, var(--metric-glyph-accent) 22%, transparent);
+  stroke-width: 1;
+}
+
+.glyph[data-theme="dark"] .chip {
+  fill: color-mix(in srgb, var(--metric-glyph-accent) 16%, transparent);
+  stroke: color-mix(in srgb, var(--metric-glyph-accent) 30%, transparent);
+}
+
+.art {
+  fill: none;
+  stroke: var(--metric-glyph-accent);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+
+.layer {
+  animation: metricGlyphLayerLift 3.6s ease-in-out infinite;
+}
+
+.layerMid {
+  opacity: 0.75;
+  animation-delay: 0.16s;
+}
+
+.layerBottom {
+  opacity: 0.55;
+  animation-delay: 0.32s;
+}
+
+@keyframes metricGlyphLayerLift {
+  0%,
+  55%,
+  100% {
+    transform: translateY(0);
+  }
+
+  22% {
+    transform: translateY(-1.6px);
+  }
+}
+
+
+
+.docLine {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: metricGlyphType 3.8s ease-in-out infinite;
+}
+
+.docLineTwo {
+  animation-delay: 0.18s;
+}
+
+.docLineThree {
+  animation-delay: 0.36s;
+}
+
+@keyframes metricGlyphType {
+  0% {
+    stroke-dashoffset: 1;
+    opacity: 1;
+  }
+
+  26%,
+  68% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+
+  84% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+
+  85%,
+  100% {
+    stroke-dashoffset: 1;
+    opacity: 0;
+  }
+}
+
+
+
+.ring {
+  opacity: 0.5;
+  animation: metricGlyphRingPulse 3.2s ease-in-out infinite;
+}
+
+.ringMid {
+  animation-delay: 0.28s;
+}
+
+.ringBottom {
+  animation-delay: 0.56s;
+}
+
+@keyframes metricGlyphRingPulse {
+  0%,
+  60%,
+  100% {
+    opacity: 0.5;
+  }
+
+  22% {
+    opacity: 1;
+  }
+}
+
+
+
+.gaugeTrack {
+  opacity: 0.28;
+}
+
+.gaugeValue {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: metricGlyphGaugeFill 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes metricGlyphGaugeFill {
+  0% {
+    stroke-dashoffset: 1;
+  }
+
+  38%,
+  70% {
+    stroke-dashoffset: 0.28;
+  }
+
+  100% {
+    stroke-dashoffset: 1;
+  }
+}
+
+.gaugeArrow {
+  animation: metricGlyphArrowBob 4.2s ease-in-out infinite;
+}
+
+@keyframes metricGlyphArrowBob {
+  0%,
+  100% {
+    transform: translateY(0.8px);
+  }
+
+  45% {
+    transform: translateY(-1.2px);
+  }
+}
+
+
+
+.spinTrack {
+  opacity: 0.24;
+  stroke-dasharray: 2.5 4;
+}
+
+.spinArc {
+  transform-origin: 28px 28px;
+  animation: metricGlyphOrbit 2.6s linear infinite;
+}
+
+.spinCore {
+  transform-origin: 28px 28px;
+  animation: metricGlyphCoreBreathe 2.6s ease-in-out infinite;
+}
+
+@keyframes metricGlyphOrbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes metricGlyphCoreBreathe {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.55;
+  }
+
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+
+.checkRing {
+  opacity: 0.34;
+  transform-origin: 28px 28px;
+  animation: metricGlyphRingBloom 3.6s ease-in-out infinite;
+}
+
+.checkMark {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: metricGlyphCheckDraw 3.6s ease-in-out infinite;
+}
+
+@keyframes metricGlyphRingBloom {
+  0%,
+  100% {
+    opacity: 0.34;
+    transform: scale(1);
+  }
+
+  30% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+
+  70% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+}
+
+@keyframes metricGlyphCheckDraw {
+  0% {
+    stroke-dashoffset: 1;
+    opacity: 1;
+  }
+
+  24%,
+  72% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+
+  86% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+
+  87%,
+  100% {
+    stroke-dashoffset: 1;
+    opacity: 0;
+  }
+}
+
+
+
+.envelopeFlap {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: metricGlyphFlapTrace 3.4s ease-in-out infinite;
+}
+
+.badgeDot {
+  fill: var(--metric-glyph-accent);
+  stroke: none;
+  transform-origin: 39.5px 19.5px;
+  animation: metricGlyphBadgeBeat 3.4s ease-in-out infinite;
+}
+
+.badgePulse {
+  opacity: 0;
+  transform-origin: 39.5px 19.5px;
+  animation: metricGlyphBadgeRipple 3.4s ease-out infinite;
+}
+
+@keyframes metricGlyphFlapTrace {
+  0% {
+    stroke-dashoffset: 1;
+  }
+
+  36%,
+  76% {
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    stroke-dashoffset: 1;
+  }
+}
+
+@keyframes metricGlyphBadgeBeat {
+  0%,
+  100% {
+    transform: scale(0.86);
+  }
+
+  22% {
+    transform: scale(1);
+  }
+}
+
+@keyframes metricGlyphBadgeRipple {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  55%,
+  100% {
+    opacity: 0;
+    transform: scale(2.1);
+  }
+}
+
+
+
+.clock {
+  transform-origin: 28px 28px;
+  animation: metricGlyphClockShiver 4.8s ease-in-out infinite;
+}
+
+.clockHandHour {
+  opacity: 0.8;
+  transform-origin: 28px 28px;
+  animation: metricGlyphOrbit 14.4s linear infinite;
+}
+
+.clockHandMinute {
+  transform-origin: 28px 28px;
+  animation: metricGlyphOrbit 2.4s linear infinite;
+}
+
+@keyframes metricGlyphClockShiver {
+  0%,
+  70%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  76% {
+    transform: rotate(-4deg);
+  }
+
+  82% {
+    transform: rotate(4deg);
+  }
+
+  88% {
+    transform: rotate(-2deg);
+  }
+
+  94% {
+    transform: rotate(0deg);
+  }
+}
+
+
+
+.assignTrack {
+  opacity: 0.35;
+  stroke-dasharray: 3 3.6;
+  transform-origin: 28px 28px;
+  animation: metricGlyphOrbit 7s linear infinite;
+}
+
+.assignHead {
+  animation: metricGlyphSeek 3s ease-in-out infinite;
+}
+
+.assignBody {
+  animation: metricGlyphSeek 3s ease-in-out infinite;
+  animation-delay: 0.2s;
+}
+
+@keyframes metricGlyphSeek {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  45% {
+    opacity: 1;
+  }
+}
+
+
+
+.ridge {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: metricGlyphRidge 4.2s ease-in-out infinite;
+}
+
+.ridgeTwo {
+  animation-delay: 0.14s;
+}
+
+.ridgeThree {
+  animation-delay: 0.28s;
+}
+
+.ridgeOuter {
+  opacity: 0.55;
+  animation-delay: 0.42s;
+}
+
+@keyframes metricGlyphRidge {
+  0%,
+  70%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+
+  22% {
+    stroke-dashoffset: 1;
+  }
+
+  46% {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+
+.scaleBeam {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: metricGlyphTip 5s ease-in-out infinite;
+}
+
+@keyframes metricGlyphTip {
+  0%,
+  100% {
+    transform: rotate(-3.5deg);
+  }
+
+  50% {
+    transform: rotate(3.5deg);
+  }
+}
+
+
+
+.lockShackle {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  animation: metricGlyphShackle 4.6s ease-in-out infinite;
+}
+
+.lockKeyhole {
+  opacity: 0.8;
+}
+
+@keyframes metricGlyphShackle {
+  0%,
+  62%,
+  100% {
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(-1.8px);
+  }
+}
+
+
+
+.tagOutline {
+  opacity: 0.85;
+}
+
+.unknownMark {
+  animation: metricGlyphAsk 4.4s ease-in-out infinite;
+}
+
+@keyframes metricGlyphAsk {
+  0%,
+  60%,
+  100% {
+    opacity: 0.9;
+  }
+
+  30% {
+    opacity: 0.35;
+  }
+}
+
+
+
+.scanSlash {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: metricGlyphSlash 4.8s ease-in-out infinite;
+}
+
+@keyframes metricGlyphSlash {
+  0%,
+  16% {
+    stroke-dashoffset: 1;
+  }
+
+  40%,
+  84% {
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    stroke-dashoffset: 1;
+  }
+}
+
+
+
+.densityDots circle {
+  fill: var(--metric-glyph-accent);
+  stroke: none;
+  animation: metricGlyphDot 3.8s ease-in-out infinite;
+}
+
+.densityDotTwo {
+  animation-delay: 0.2s;
+}
+
+.densityDotThree {
+  animation-delay: 0.4s;
+}
+
+@keyframes metricGlyphDot {
+  0%,
+  60%,
+  100% {
+    opacity: 0.45;
+  }
+
+  28% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layer,
+  .docLine,
+  .ring,
+  .gaugeValue,
+  .gaugeArrow,
+  .spinArc,
+  .spinCore,
+  .checkRing,
+  .checkMark,
+  .envelopeFlap,
+  .badgeDot,
+  .badgePulse,
+  .clock,
+  .clockHandHour,
+  .clockHandMinute,
+  .assignTrack,
+  .assignHead,
+  .assignBody,
+  .ridge,
+  .scaleBeam,
+  .lockShackle,
+  .unknownMark,
+  .scanSlash,
+  .densityDots circle {
+    animation: none;
+  }
+
+  .ridge,
+  .scanSlash {
+    stroke-dashoffset: 0;
+  }
+
+  .docLine {
+    stroke-dashoffset: 0;
+  }
+
+  .gaugeValue {
+    stroke-dashoffset: 0.28;
+  }
+
+  .checkMark,
+  .envelopeFlap {
+    stroke-dashoffset: 0;
+  }
+
+  .badgePulse {
+    opacity: 0;
+  }
+}

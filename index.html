@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <title>Icon Octagon Cage · 图标八角笼</title>
+
+    <link rel="stylesheet" href="old-icons.css" />
+    <link rel="stylesheet" href="icons.css?v=gpt-frosted-21" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Icon Octagon Cage · 图标八角笼</h1>
+        <div class="sub">图标八角笼 · Six visual styles, one icon playground.</div>
+      </div>
+      <div class="controls">
+        <button data-theme-btn="light">Light</button>
+        <button data-theme-btn="dark">Dark</button>
+        <span style="width: 10px"></span>
+        <button data-size-btn="56">56</button>
+        <button data-size-btn="40">40</button>
+        <button data-size-btn="28">28</button>
+        <button data-size-btn="20">20</button>
+      </div>
+    </header>
+
+    <section>
+      <h2>Full comparison</h2>
+      <p>六种图标风格同场对比。切换尺寸和明暗背景，使用独立面板调整 GPT 与 Claude 图标的配色和玻璃材质。</p>
+
+      <div
+        id="glass-controls"
+        class="glass-controls"
+        role="region"
+        aria-label="GPT-Glass 配色与材质"
+      >
+        <div class="glass-editor-head">
+          <h3>GPT-Glass 配色与材质</h3>
+          <span id="glass-status" role="status">调整只影响 GPT-Glass 列</span>
+        </div>
+        <div class="glass-editor-body">
+          <div
+            class="glass-preview"
+            id="glass-preview"
+            aria-label="当前图标尺寸预览"
+          ></div>
+          <div class="glass-fields">
+            <div class="glass-field-row">
+              <label>当前图标<select id="glass-selection"></select></label>
+              <label
+                >主色<input
+                  id="glass-picker"
+                  type="color"
+                  aria-label="Glass 主色"
+                  value="#2785d8"
+              /></label>
+              <label
+                >HEX<input
+                  id="glass-hex"
+                  type="text"
+                  spellcheck="false"
+                  maxlength="7"
+                  value="#2785D8"
+                  aria-label="Glass HEX 颜色"
+                  pattern="#[0-9a-fA-F]{6}"
+              /></label>
+              <button type="button" id="glass-all">此颜色应用到全部</button>
+            </div>
+            <div class="glass-field-row">
+              <label
+                >磨砂玻璃浓度 <output id="glass-opacity-value">100%</output
+                ><input
+                  id="glass-opacity"
+                  aria-label="磨砂玻璃浓度"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="100"
+              /></label>
+              <label
+                >阴影强度 <output id="glass-shadow-value">100%</output
+                ><input
+                  id="glass-shadow"
+                  aria-label="阴影强度"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="100"
+              /></label>
+              <button type="button" id="glass-gray">全列灰阶</button>
+              <button type="button" id="glass-reset-one">重置当前颜色</button>
+              <button type="button" id="glass-reset">重置全部</button>
+            </div>
+            <p id="glass-meaning"></p>
+          </div>
+        </div>
+      </div>
+      <div
+        id="cg-controls"
+        class="glass-controls cg-controls"
+        role="region"
+        aria-label="Claude-Glass 配色与材质"
+      >
+        <div class="glass-editor-head">
+          <h3>Claude-Glass 配色与材质</h3>
+          <span id="cg-status" role="status">调整只影响 Claude-Glass 列</span>
+        </div>
+        <div class="glass-editor-body">
+          <div
+            class="glass-preview"
+            id="cg-preview"
+            aria-label="当前图标尺寸预览"
+          ></div>
+          <div class="glass-fields">
+            <div class="glass-field-row">
+              <label>当前图标<select id="cg-selection"></select></label>
+              <label
+                >主色<input
+                  id="cg-picker"
+                  type="color"
+                  aria-label="Claude-Glass 主色"
+                  value="#0B85C8"
+              /></label>
+              <label
+                >HEX<input
+                  id="cg-hex"
+                  type="text"
+                  spellcheck="false"
+                  maxlength="7"
+                  value="#0B85C8"
+                  aria-label="Claude-Glass HEX 颜色"
+                  pattern="#[0-9a-fA-F]{6}"
+              /></label>
+              <button type="button" id="cg-all">此颜色应用到全部</button>
+            </div>
+            <div class="glass-field-row">
+              <label
+                >玻璃浓度 <output id="cg-glass-value">100%</output
+                ><input
+                  id="cg-glass"
+                  aria-label="玻璃浓度"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="100"
+              /></label>
+              <label
+                >磨砂模糊 <output id="cg-blur-value">100%</output
+                ><input
+                  id="cg-blur"
+                  aria-label="磨砂模糊半径"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="100"
+              /></label>
+              <label
+                >上缘高光 <output id="cg-light-value">100%</output
+                ><input
+                  id="cg-light"
+                  aria-label="上缘高光强度"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="100"
+              /></label>
+              <button type="button" id="cg-gray">全列灰阶</button>
+              <button type="button" id="cg-reset-one">重置当前颜色</button>
+              <button type="button" id="cg-reset">重置全部</button>
+            </div>
+            <p id="cg-meaning"></p>
+          </div>
+        </div>
+      </div>
+      <div class="grid" id="grid"></div>
+      <div id="coverage"></div>
+    </section>
+
+
+
+    <section>
+      <h2>dataType — the candidates</h2>
+      <p>
+        A is in use in the flat direction. The other three are kept so the
+        decision stays reviewable: B reads as a toggle switch, C is clean but
+        generic, D reads "kind" most directly and is the runner-up — its risk is
+        colliding with Category. The fingerprint that came before all four is
+        gone: most data types have nothing to do with biometrics.
+      </p>
+      <div class="row" id="candidates"></div>
+    </section>
+
+    <section>
+      <h2>The flat ramps</h2>
+      <p>
+        tile · lit face (<code>--eg-1</code>) · body (<code>--eg-2</code>) ·
+        turned-away plane (<code>--eg-3</code>) · ink · accent. Flip to Dark
+        above to check both.
+      </p>
+      <div class="ramp" id="ramps"></div>
+    </section>
+
+    <script src="main-icons.js"></script>
+    <script src="old-icons.js"></script>
+    <script src="glass-icons.js?v=gpt-frosted-21"></script>
+    <script src="glass-controls.js?v=gpt-frosted-21"></script>
+    <script src="kimi-glass-icons.js"></script>
+    <script src="claude-glass-icons.js?v=claude-glass-1"></script>
+    <script src="claude-glass-controls.js?v=claude-glass-1"></script>
+    <script src="icons.js?v=gpt-frosted-21"></script>
+  </body>
+</html>
