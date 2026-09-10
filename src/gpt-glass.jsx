@@ -10,7 +10,7 @@ const ITEMS = [{
   name: "Agent",
   meaning: "部署在客户网络中的采集与执行节点",
   detail: "",
-  color: "#247FAF"
+  color: "#5363C8"
 }, {
   id: "scan",
   name: "Scan",
@@ -144,22 +144,18 @@ const GLYPHS = {
       </>
   },
   agent: {
-    // Use the familiar AI-agent robot metaphor: antenna, ears and a two-eye visor.
-    // The frosted visor sits inside the head, so it needs no extra backing.
+    // Secuvy's original symbol forms the glass face of an antenna-free robot.
+    // Geometry: webapp/public/secuvy.svg, first symbol path (without the wordmark).
+    // Keep transforms on each pane: collectPanes clones the shape, not its parent.
     solid: <>
-        <rect x="22.5" y="6" width="3" height="9" rx="1.5" />
-        <circle cx="24" cy="5.5" r="3" />
-        <rect x="4" y="22" width="6" height="11" rx="3" />
-        <rect x="38" y="22" width="6" height="11" rx="3" />
-        <rect x="8" y="13" width="32" height="29" rx="8" />
+        <rect x="4" y="20" width="6" height="11" rx="3" />
+        <rect x="38" y="20" width="6" height="11" rx="3" />
+        <rect x="8" y="8" width="32" height="32" rx="10" />
       </>,
     front: ({ pane, body }) => <>
-        <rect x="11" y="18" width="26" height="17" rx="5" {...pane} />
-        <rect x="16.5" y="23" width="4" height="7" rx="2" fill={body} />
-        <rect x="27.5" y="23" width="4" height="7" rx="2" fill={body} />
-        <path d="M21 38h6" fill="none" stroke="#fff" strokeOpacity=".5" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M16 14.5h16" fill="none" stroke="#fff" strokeOpacity=".25" strokeWidth=".8" strokeLinecap="round" />
-        <circle cx="23.3" cy="4.7" r="1" fill="#fff" opacity=".35" />
+        <path transform="translate(12 12) scale(.52)" d="M31.2519 39.9984H26.5553C23.6416 39.9984 21.2836 37.6371 21.2836 34.7268C21.2836 31.8164 23.6449 29.4551 26.5553 29.4551H31.2519C33.0576 29.4551 34.5273 27.9854 34.5273 26.1765V13.5078L9.58076 38.4544C7.51991 40.5152 4.18315 40.5152 2.12231 38.4544C0.0646984 36.3935 0.0646984 33.0568 2.12231 30.9959L30.6382 2.48006C33.0673 0.0542058 36.6818 -0.66612 39.8538 0.648556C43.0258 1.96323 45.0738 5.02865 45.0738 8.45909V26.1733C45.0738 33.7965 38.8719 39.9952 31.2519 39.9952V39.9984Z" {...pane} />
+        <circle transform="translate(12 12) scale(.52)" cx="26.5551" cy="34.7241" r="5.2749" {...pane} stroke={body} strokeWidth="2.5" />
+        <path d="M17 9.5h14" fill="none" stroke="#fff" strokeOpacity=".22" strokeWidth=".8" strokeLinecap="round" />
       </>
   },
   scan: {

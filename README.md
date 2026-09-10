@@ -72,8 +72,10 @@ code; the playground retains its standalone editor and explanatory subject metad
 ### Agent
 
 `agent` represents the customer-side collector and execution runtime. Its visual
-metaphor deliberately follows the familiar AI-agent robot: a rounded head, antenna,
-side ears, and two eyes behind a frosted visor. The visor sits on the coloured head
-and uses the existing clipped blur without an extra backing. The default colour is
-infrastructure blue `#247FAF`; no status light or success mark is built into the glyph.
-It is available in the comparison grid and the GPT Glass editor.
+metaphor is a compact robot head with side ears and no antenna. Secuvy's original
+symbol forms the frosted glass face, using the symbol path from the webapp's
+`public/secuvy.svg` without the wordmark. Its circular terminal is separated by a
+thin body-coloured edge. Each pane carries its own transform so the blur clip and
+rim mask retain the logo geometry. The panes sit entirely on the head and need no
+extra backing. The default colour is muted indigo `#5363C8`; no runtime status is
+built into the artwork. It is available in the comparison grid and GPT Glass editor.
