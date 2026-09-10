@@ -88,7 +88,11 @@ const COLUMNS = [{
 }];
 let currentTheme = "light";
 function allRows() {
-  return (window.OLD_ICON_NAMES || []).concat(window.MAIN_EXTRA_ROWS || []);
+  return [...new Set([
+    ...(window.OLD_ICON_NAMES || []),
+    ...(window.MAIN_EXTRA_ROWS || []),
+    ...Object.keys(window.GLASS_META || {})
+  ])];
 }
 function orderRows(names) {
   const filled = name => COLUMNS.reduce((n, c) => n + (c.cell(name, currentTheme) ? 1 : 0), 0);

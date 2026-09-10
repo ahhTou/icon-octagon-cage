@@ -6,6 +6,12 @@ const ITEMS = [{
   detail: "",
   color: "#1688FF"
 }, {
+  id: "agent",
+  name: "Agent",
+  meaning: "部署在客户网络中的采集与执行节点",
+  detail: "",
+  color: "#247FAF"
+}, {
   id: "scan",
   name: "Scan",
   meaning: "检查并识别内容",
@@ -135,6 +141,25 @@ const GLYPHS = {
         <path d="M9 19c0 4 7 6 15 6s15-2 15-6v10c0 4-7 6-15 6S9 33 9 29Z" {...pane} />
         <ellipse cx="24" cy="12" rx="15" ry="6" fill="#fff" opacity=".20" />
         <path d="M10 12c0-3 6-5 14-5s14 2 14 5" fill="none" stroke="#fff" strokeOpacity=".25" strokeWidth=".8" />
+      </>
+  },
+  agent: {
+    // Use the familiar AI-agent robot metaphor: antenna, ears and a two-eye visor.
+    // The frosted visor sits inside the head, so it needs no extra backing.
+    solid: <>
+        <rect x="22.5" y="6" width="3" height="9" rx="1.5" />
+        <circle cx="24" cy="5.5" r="3" />
+        <rect x="4" y="22" width="6" height="11" rx="3" />
+        <rect x="38" y="22" width="6" height="11" rx="3" />
+        <rect x="8" y="13" width="32" height="29" rx="8" />
+      </>,
+    front: ({ pane, body }) => <>
+        <rect x="11" y="18" width="26" height="17" rx="5" {...pane} />
+        <rect x="16.5" y="23" width="4" height="7" rx="2" fill={body} />
+        <rect x="27.5" y="23" width="4" height="7" rx="2" fill={body} />
+        <path d="M21 38h6" fill="none" stroke="#fff" strokeOpacity=".5" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M16 14.5h16" fill="none" stroke="#fff" strokeOpacity=".25" strokeWidth=".8" strokeLinecap="round" />
+        <circle cx="23.3" cy="4.7" r="1" fill="#fff" opacity=".35" />
       </>
   },
   scan: {

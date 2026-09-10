@@ -68,3 +68,12 @@ both source and generated `glass-icons.js`. Port approved geometry and material
 changes to the webapp, keeping its subject metadata (`glassSubjects.js`) and theme
 store (`iconTheme.js`) separate. The app's store and settings UI are integration
 code; the playground retains its standalone editor and explanatory subject metadata.
+
+### Agent
+
+`agent` represents the customer-side collector and execution runtime. Its visual
+metaphor deliberately follows the familiar AI-agent robot: a rounded head, antenna,
+side ears, and two eyes behind a frosted visor. The visor sits on the coloured head
+and uses the existing clipped blur without an extra backing. The default colour is
+infrastructure blue `#247FAF`; no status light or success mark is built into the glyph.
+It is available in the comparison grid and the GPT Glass editor.
