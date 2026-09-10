@@ -12,6 +12,12 @@ const ITEMS = [{
   detail: "",
   color: "#1688FF"
 }, {
+  id: "schema",
+  name: "Schema",
+  meaning: "某次扫描实际使用的分类材料",
+  detail: "",
+  color: "#6B3FE0"
+}, {
   id: "dataType",
   name: "Data type",
   meaning: "数据属于哪一类",
@@ -29,6 +35,12 @@ const ITEMS = [{
   meaning: "识别出的单个值",
   detail: "",
   color: "#FF9B20"
+}, {
+  id: "policy",
+  name: "Policy",
+  meaning: "规则与动作的可复用组合",
+  detail: "",
+  color: "#0E9BB8"
 }, {
   id: "tagRegulation",
   row: "tag.regulation",
@@ -117,20 +129,16 @@ const ITEMS = [{
 const GLYPHS = {
   source: {
     solid: <>
-        <path d="M9 25h30v11c0 4-7 7-15 7S9 40 9 36Z" />
-        <ellipse cx="24" cy="25" rx="15" ry="6" />
+        <path d="M9 12c0-4 7-6 15-6s15 2 15 6v24c0 4-7 6-15 6S9 40 9 36Z" />
       </>,
-    front: ({
-      pane,
-      body
-    }) => <>
-        <path d="M9 12c0-4 7-7 15-7s15 3 15 7v20c0 4-7 7-15 7S9 36 9 32Z" {...pane} />
-        <ellipse cx="24" cy="12" rx="15" ry="7" {...pane} />
-        <path d="M10 23c5 7 23 7 28 0M10 32c5 7 23 7 28 0" fill="none" stroke="#fff" strokeOpacity="0.22" strokeWidth=".8" />
-        <ellipse cx="24" cy="12" rx="10" ry="3.5" fill={body} opacity=".32" />
+    front: ({ pane }) => <>
+        <path d="M9 19c0 4 7 6 15 6s15-2 15-6v10c0 4-7 6-15 6S9 33 9 29Z" {...pane} />
+        <ellipse cx="24" cy="12" rx="15" ry="6" fill="#fff" opacity=".20" />
+        <path d="M10 12c0-3 6-5 14-5s14 2 14 5" fill="none" stroke="#fff" strokeOpacity=".25" strokeWidth=".8" />
       </>
   },
   scan: {
+    backing: ({ ground }) => <rect x="15" y="15" width="18" height="18" rx="5" {...ground} />,
     solid: <path d="M8 17V11a4 4 0 0 1 4-4h6v4h-6v6Zm22-10h6a4 4 0 0 1 4 4v6h-4v-6h-6ZM8 31h4v6h6v4h-6a4 4 0 0 1-4-4Zm28 0h4v6a4 4 0 0 1-4 4h-6v-4h6Z" />,
     front: ({
       pane,
@@ -139,6 +147,20 @@ const GLYPHS = {
         <rect x="15" y="15" width="18" height="18" rx="5" {...pane} />
         <rect x="6" y="22" width="36" height="4" rx="2" fill={body} />
         <path d="M8 22.5h32" stroke="#fff" strokeOpacity="0.22" strokeWidth="0.6" />
+      </>
+  },
+  schema: {
+    solid: <>
+        <path d="M14 7h20a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V11a4 4 0 0 1 4-4Z" />
+        <rect x="18" y="4" width="12" height="7" rx="3" />
+      </>,
+    front: ({
+      pane,
+      body
+    }) => <>
+        <rect x="15" y="16" width="18" height="21" rx="3" {...pane} />
+        <path d="M19 22h10M19 27.5h7M19 33h10" fill="none" stroke={body} strokeWidth="2.2" strokeLinecap="round" />
+        <path d="M20 6.5h8" stroke="#fff" strokeOpacity=".28" strokeWidth=".8" />
       </>
   },
   dataType: {
@@ -171,6 +193,17 @@ const GLYPHS = {
       pane
     }) => <path d="m24 7 15 16a3 3 0 0 1 0 4L26 41a3 3 0 0 1-2 1V7Z" {...pane} />
   },
+  policy: {
+    solid: <path d="M24 5 39 10v13c0 10-6 17-15 20-9-3-15-10-15-20V10Z" />,
+    front: ({
+      pane,
+      body
+    }) => <>
+        <rect x="10" y="19" width="28" height="9" rx="2.5" {...pane} />
+        <path d="M14 22h12M14 25.5h8" fill="none" stroke={body} strokeWidth="2" strokeLinecap="round" />
+        <path d="M10.5 10.5 24 6l13.5 4.5" fill="none" stroke="#fff" strokeOpacity=".25" strokeWidth=".8" />
+      </>
+  },
   tagRegulation: {
     solid: <path d="M8 14c7-2 12 0 16 3 4-3 9-5 16-3v25c-6-1-11 0-16 3-5-3-10-4-16-3Z" />,
     front: ({
@@ -181,6 +214,7 @@ const GLYPHS = {
       </>
   },
   tagClass: {
+    backing: ({ ground }) => <rect x="8" y="19" width="32" height="23" rx="5" {...ground} />,
     solid: <>
         <path fillRule="evenodd" d="M13 23v-8a11 11 0 0 1 22 0v8h-5v-8a6 6 0 0 0-12 0v8Z" />
       </>,
@@ -195,12 +229,9 @@ const GLYPHS = {
   },
   stateUnlabelled: {
     solid: <path fillRule="evenodd" d="M8 6h14a3 3 0 0 1 2 1l18 18a3 3 0 0 1 0 4L29 42a3 3 0 0 1-4 0L7 24a3 3 0 0 1-1-2V8a2 2 0 0 1 2-2Zm3 6a3 3 0 1 0 6 0 3 3 0 1 0-6 0Z" />,
-    front: ({
-      pane
-    }) => <>
-        <path transform="translate(26 26) scale(.82) translate(-27 -26)" d="M19 22c0-10 16-11 16-1 0 5-7 6-7 9h-4c0-6 7-7 7-9 0-5-8-4-8 1Z" {...pane} />
-        <circle cx="26" cy="35" r="2.3" transform="translate(26 26) scale(.82) translate(-27 -26)" {...pane} />
-      </>
+    // An empty tag means unlabelled; reserve the question mark for reqUnverified.
+    // No pane also means no rim highlight on this subject.
+    front: () => null
   },
   reqActive: {
     solid: <>
@@ -266,6 +297,7 @@ const GLYPHS = {
       </>
   },
   metricDatatypes: {
+    backing: ({ ground }) => <rect x="12" y="12" width="24" height="24" rx="5" {...ground} />,
     solid: <path d="M5 16V9a4 4 0 0 1 4-4h7v4H9v7Zm27-11h7a4 4 0 0 1 4 4v7h-4V9h-7ZM5 32h4v7h7v4H9a4 4 0 0 1-4-4Zm34 0h4v7a4 4 0 0 1-4 4h-7v-4h7Z" />,
     front: ({
       pane,
@@ -296,6 +328,7 @@ const GLYPHS = {
       </>
   },
   stateUnscanned: {
+    backing: ({ ground }) => <rect x="16" y="16" width="16" height="16" rx="4" {...ground} />,
     solid: <path d="M8 17V11a4 4 0 0 1 4-4h6v4h-6v6Zm22-10h6a4 4 0 0 1 4 4v6h-4v-6h-6ZM8 31h4v6h6v4h-6a4 4 0 0 1-4-4Zm28 0h4v6a4 4 0 0 1-4 4h-6v-4h6Z" />,
     front: ({
       pane
@@ -305,10 +338,18 @@ const GLYPHS = {
       </>
   }
 };
+// Back only the four panes suspended outside their solid body.
+const BACKING_OPACITY = 0.55;
+const PANE_OPACITY = 0.42;
+const SHADOW_OPACITY = 0.2;
+const SHADOW_COLOR = "#2F62E0";
+
 function GlassIcon({
   kind,
   color,
-  size
+  size = 48,
+  glass: paneScale = 1,
+  shadow: shadowScale = 1
 }) {
   const id = useId().replace(/:/g, "");
   const body = `url(#${id}-body)`;
@@ -319,6 +360,10 @@ function GlassIcon({
     "data-glass": "blur"
   };
   const glyph = GLYPHS[kind];
+  if (!glyph) return null;
+  color = color || ITEMS.find(item => item.id === kind).color;
+  const ground = { fill: body, opacity: BACKING_OPACITY, "data-glass": "backing" };
+  const backing = glyph.backing ? glyph.backing({ ground, body }) : null;
   const front = glyph.front({
     pane,
     body
@@ -349,8 +394,8 @@ function GlassIcon({
           <stop offset="1" stopColor="#071321" stopOpacity="0.30" />
         </linearGradient>
         <linearGradient id={`${id}-glass`} x1="0" y1="0" x2="0" y2="1">
-          <stop stopColor="#F1F1F3" stopOpacity="0.42" />
-          <stop offset="1" stopColor="#DADAE0" stopOpacity="0.42" />
+          <stop stopColor="#F1F1F3" stopOpacity={PANE_OPACITY * paneScale} />
+          <stop offset="1" stopColor="#DADAE0" stopOpacity={PANE_OPACITY * paneScale} />
         </linearGradient>
         <linearGradient id={`${id}-edge`} gradientUnits="userSpaceOnUse" x1="0" y1="5" x2="0" y2="24">
           <stop stopColor="#fff" />
@@ -375,7 +420,7 @@ function GlassIcon({
         }))}
         </mask>
         <filter id={`${id}-soft`} x="-40%" y="-40%" width="180%" height="190%">
-          <feDropShadow dx="0" dy="1.2" stdDeviation="0.9" floodColor="#17283F" floodOpacity="0.16" />
+          <feDropShadow dx="0" dy="1.2" stdDeviation="1.2" floodColor={SHADOW_COLOR} floodOpacity={SHADOW_OPACITY * shadowScale} />
         </filter>
         <g id={`${id}-solid`}>{glyph.solid}</g>
       </defs>
@@ -384,6 +429,7 @@ function GlassIcon({
           <use href={`#${id}-solid`} fill={body} />
           <use href={`#${id}-solid`} fill={`url(#${id}-shade)`} />
         </g>
+        {backing}
         <g data-glass="clone" clipPath={`url(#${id}-panes)`}>
           <g filter={`url(#${id}-frost)`}>
             <use href={`#${id}-solid`} fill={body} />
