@@ -10,7 +10,7 @@ const ITEMS = [{
   name: "Agent",
   meaning: "部署在客户网络中的采集与执行节点",
   detail: "",
-  color: "#5363C8"
+  color: "#0B85C8"
 }, {
   id: "scan",
   name: "Scan",
@@ -144,18 +144,26 @@ const GLYPHS = {
       </>
   },
   agent: {
-    // Secuvy's original symbol forms the glass face of an antenna-free robot.
-    // Geometry: webapp/public/secuvy.svg, first symbol path (without the wordmark).
-    // Keep transforms on each pane: collectPanes clones the shape, not its parent.
+    // Rounded three-quarter robot with cushion ears and a short ball-tipped antenna.
+    // Face plane: matrix(.88 .15 0 .85 6 13). The logo composes this same plane
+    // with its local inset and scale; each pane retains its own transform for clipping.
+    // Logo geometry: webapp/public/secuvy.svg, without the wordmark.
     solid: <>
-        <rect x="4" y="20" width="6" height="11" rx="3" />
-        <rect x="38" y="20" width="6" height="11" rx="3" />
-        <rect x="8" y="8" width="32" height="32" rx="10" />
+        <path d="M23 12c1.5-1.5 2-3.5 1.5-5.5L27 6c1 3-1 5.5-2 7Z" />
+        <circle cx="25.5" cy="5" r="3" />
+        <ellipse cx="5.5" cy="25" rx="3.5" ry="5" />
+        <path d="M15.68 14.65c3.3-3.4 6.3-5.2 10.3-4.4l4.86.95c6.16 1.05 9.68 5.3 9.68 11v5.1c0 4.7-3.02 7.7-7.52 9.7l-6 3c-1.5.8-3.5-.2-5.16-.5l-6.16-1.05C9.5 37.4 6 33.3 6 27.45v-5.1c0-5.95 3.5-8.75 9.68-7.7Z" />
+        <ellipse cx="40.5" cy="26" rx="4.5" ry="6" transform="rotate(12 40.5 26)" />
       </>,
     front: ({ pane, body }) => <>
-        <path transform="translate(12 12) scale(.52)" d="M31.2519 39.9984H26.5553C23.6416 39.9984 21.2836 37.6371 21.2836 34.7268C21.2836 31.8164 23.6449 29.4551 26.5553 29.4551H31.2519C33.0576 29.4551 34.5273 27.9854 34.5273 26.1765V13.5078L9.58076 38.4544C7.51991 40.5152 4.18315 40.5152 2.12231 38.4544C0.0646984 36.3935 0.0646984 33.0568 2.12231 30.9959L30.6382 2.48006C33.0673 0.0542058 36.6818 -0.66612 39.8538 0.648556C43.0258 1.96323 45.0738 5.02865 45.0738 8.45909V26.1733C45.0738 33.7965 38.8719 39.9952 31.2519 39.9952V39.9984Z" {...pane} />
-        <circle transform="translate(12 12) scale(.52)" cx="26.5551" cy="34.7241" r="5.2749" {...pane} stroke={body} strokeWidth="2.5" />
-        <path d="M17 9.5h14" fill="none" stroke="#fff" strokeOpacity=".22" strokeWidth=".8" strokeLinecap="round" />
+        <path d="M15.68 14.65c3.3-3.4 6.3-5.2 10.3-4.4l4.86.95c-3.2 1-6.3 2.5-9 4.5Z" fill="#fff" opacity=".15" />
+        <path d="M21.84 15.7c6.16 1.05 9.68 5.1 9.68 11v5.1c0 4.2-2.52 7.2-5.52 8.1l7-2.9c4.5-2 7.52-5 7.52-9.7v-5.1c0-5.7-3.52-9.95-9.68-11Z" fill="#071321" opacity=".18" />
+        <ellipse cx="40.5" cy="26" rx="4.5" ry="6" transform="rotate(12 40.5 26)" fill={body} />
+        <ellipse cx="41" cy="25.5" rx="2.4" ry="3.7" transform="rotate(12 41 25.5)" fill="#fff" opacity=".16" />
+        <rect transform="matrix(.88 .15 0 .85 6 13)" width="29" height="28" rx="11" fill="none" stroke="#fff" strokeOpacity=".18" strokeWidth=".7" />
+        <circle cx="24.7" cy="4.1" r="1" fill="#fff" opacity=".4" />
+        <path transform="matrix(.4106667 .07 0 .3966667 9.52 17.85)" d="M31.2519 39.9984H26.5553C23.6416 39.9984 21.2836 37.6371 21.2836 34.7268C21.2836 31.8164 23.6449 29.4551 26.5553 29.4551H31.2519C33.0576 29.4551 34.5273 27.9854 34.5273 26.1765V13.5078L9.58076 38.4544C7.51991 40.5152 4.18315 40.5152 2.12231 38.4544C0.0646984 36.3935 0.0646984 33.0568 2.12231 30.9959L30.6382 2.48006C33.0673 0.0542058 36.6818 -0.66612 39.8538 0.648556C43.0258 1.96323 45.0738 5.02865 45.0738 8.45909V26.1733C45.0738 33.7965 38.8719 39.9952 31.2519 39.9952V39.9984Z" {...pane} />
+        <circle transform="matrix(.4106667 .07 0 .3966667 9.52 17.85)" cx="26.5551" cy="34.7241" r="5.2749" {...pane} stroke={body} strokeWidth="2.5" />
       </>
   },
   scan: {
