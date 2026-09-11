@@ -144,27 +144,29 @@ const GLYPHS = {
       </>
   },
   agent: {
-    // Rounded three-quarter robot with cushion ears and a short ball-tipped antenna.
-    // Face plane: matrix(.88 .15 0 .85 6 13). The logo composes this same plane
-    // with its local inset and scale; each pane retains its own transform for clipping.
-    // Logo geometry: webapp/public/secuvy.svg, without the wordmark.
-    solid: <>
-        <path d="M23 12c1.5-1.5 2-3.5 1.5-5.5L27 6c1 3-1 5.5-2 7Z" />
-        <circle cx="25.5" cy="5" r="3" />
-        <ellipse cx="5.5" cy="25" rx="3.5" ry="5" />
-        <path d="M15.68 14.65c3.3-3.4 6.3-5.2 10.3-4.4l4.86.95c6.16 1.05 9.68 5.3 9.68 11v5.1c0 4.7-3.02 7.7-7.52 9.7l-6 3c-1.5.8-3.5-.2-5.16-.5l-6.16-1.05C9.5 37.4 6 33.3 6 27.45v-5.1c0-5.95 3.5-8.75 9.68-7.7Z" />
-        <ellipse cx="40.5" cy="26" rx="4.5" ry="6" transform="rotate(12 40.5 26)" />
-      </>,
-    front: ({ pane, body }) => <>
-        <path d="M15.68 14.65c3.3-3.4 6.3-5.2 10.3-4.4l4.86.95c-3.2 1-6.3 2.5-9 4.5Z" fill="#fff" opacity=".15" />
-        <path d="M21.84 15.7c6.16 1.05 9.68 5.1 9.68 11v5.1c0 4.2-2.52 7.2-5.52 8.1l7-2.9c4.5-2 7.52-5 7.52-9.7v-5.1c0-5.7-3.52-9.95-9.68-11Z" fill="#071321" opacity=".18" />
-        <ellipse cx="40.5" cy="26" rx="4.5" ry="6" transform="rotate(12 40.5 26)" fill={body} />
-        <ellipse cx="41" cy="25.5" rx="2.4" ry="3.7" transform="rotate(12 41 25.5)" fill="#fff" opacity=".16" />
-        <rect transform="matrix(.88 .15 0 .85 6 13)" width="29" height="28" rx="11" fill="none" stroke="#fff" strokeOpacity=".18" strokeWidth=".7" />
-        <circle cx="24.7" cy="4.1" r="1" fill="#fff" opacity=".4" />
-        <path transform="matrix(.4106667 .07 0 .3966667 9.52 17.85)" d="M31.2519 39.9984H26.5553C23.6416 39.9984 21.2836 37.6371 21.2836 34.7268C21.2836 31.8164 23.6449 29.4551 26.5553 29.4551H31.2519C33.0576 29.4551 34.5273 27.9854 34.5273 26.1765V13.5078L9.58076 38.4544C7.51991 40.5152 4.18315 40.5152 2.12231 38.4544C0.0646984 36.3935 0.0646984 33.0568 2.12231 30.9959L30.6382 2.48006C33.0673 0.0542058 36.6818 -0.66612 39.8538 0.648556C43.0258 1.96323 45.0738 5.02865 45.0738 8.45909V26.1733C45.0738 33.7965 38.8719 39.9952 31.2519 39.9952V39.9984Z" {...pane} />
-        <circle transform="matrix(.4106667 .07 0 .3966667 9.52 17.85)" cx="26.5551" cy="34.7241" r="5.2749" {...pane} stroke={body} strokeWidth="2.5" />
-      </>
+    // Bot head with antennae and a pedestal — the 24x24 design frame scaled
+    // translate(6 6) scale(1.5) into the 48 grid, volume matched to the family.
+    // Face pane = stadium ring + both eyes; the subpath winding is what makes the
+    // ring a ring and the eyes dots — do not "tidy" it.
+    // Frostier than the family default by design (pane .6, frost 8.25): the face must
+    // cover the structure under it. Rim on the outer stadium only — outlining the inner
+    // boundary or the eyes reads as a skeleton under the glass. No backing: the ring's
+    // overhang is a visor of bare glass, the design's own look.
+    paneOpacity: 0.6,
+    frost: 8.25,
+    rim: (
+      <path transform="translate(6 6) scale(1.5)" d="M15 3C19.4183 3 23 6.58172 23 11C23 15.4183 19.4183 19 15 19H9C4.58172 19 1 15.4183 1 11C1 6.58172 4.58172 3 9 3H15Z" />
+    ),
+    solid: (
+      <g transform="translate(6 6) scale(1.5)">
+        <path d="M20 1C20.5523 1 21 1.44772 21 2V7C21 7.48913 20.6485 7.89473 20.1846 7.98145C20.7021 8.86834 21 9.89912 21 11C21 14.3137 18.3137 17 15 17H14.0625L15.8848 19.6504C16.5687 20.6456 15.8561 22 14.6484 22H9.35156C8.14389 22 7.43128 20.6456 8.11523 19.6504L9.9375 17H9C5.68629 17 3 14.3137 3 11C3 9.89929 3.29713 8.86824 3.81445 7.98145C3.35095 7.89436 3 7.4888 3 7V2C3 1.44772 3.44772 1 4 1C4.55228 1 5 1.44772 5 2V6.52832C6.06154 5.5781 7.46316 5 9 5H15C16.5368 5 17.9385 5.5781 19 6.52832V2C19 1.44772 19.4477 1 20 1Z" />
+      </g>
+    ),
+    // pane 路径的 transform 必须挂在路径自己身上:collectPanes 克隆的是路径,
+    // 包一层 <g> 会让克隆丢掉变换,蒙版和裁剪全部错位。
+    front: ({ pane }) => (
+      <path transform="translate(6 6) scale(1.5)" d="M15 3C19.4183 3 23 6.58172 23 11C23 15.4183 19.4183 19 15 19H9C4.58172 19 1 15.4183 1 11C1 6.58172 4.58172 3 9 3H15ZM9 6C6.23858 6 4 8.23858 4 11C4 13.7614 6.23858 16 9 16H15C17.7614 16 20 13.7614 20 11C20 8.23858 17.7614 6 15 6H9ZM8.5 8.5C9.88071 8.5 11 9.61929 11 11C11 12.3807 9.88071 13.5 8.5 13.5C7.11929 13.5 6 12.3807 6 11C6 9.61929 7.11929 8.5 8.5 8.5ZM15.5 10C16.8807 10 18 10 18 11C18 12.3807 16.8807 13.5 15.5 13.5C14.1193 13.5 13 12.3807 13 11C13 10 14.1193 10 15.5 10Z" {...pane} />
+    )
   },
   scan: {
     backing: ({ ground }) => <rect x="15" y="15" width="18" height="18" rx="5" {...ground} />,
@@ -391,6 +393,12 @@ function GlassIcon({
   const glyph = GLYPHS[kind];
   if (!glyph) return null;
   color = color || ITEMS.find(item => item.id === kind).color;
+  // Per-glyph material dials, both defaulting to the family norm: `paneOpacity` is the
+  // pane's absolute opacity (agent's face uses the design's own .6), `frost` the blur
+  // under the panes, `rim` a custom mask shape for the top highlight (agent highlights
+  // the outer stadium only — outlining every pane boundary reads as a skeleton).
+  const paneAlpha = glyph.paneOpacity === undefined ? PANE_OPACITY : glyph.paneOpacity;
+  const frostSigma = glyph.frost === undefined ? 3 : glyph.frost;
   const ground = { fill: body, opacity: BACKING_OPACITY, "data-glass": "backing" };
   const backing = glyph.backing ? glyph.backing({ ground, body }) : null;
   const front = glyph.front({
@@ -411,6 +419,7 @@ function GlassIcon({
     });
   }
   collectPanes(front);
+  const rimShapes = glyph.rim ? React.cloneElement(glyph.rim, { fill: "white", stroke: "none" }) : panes;
   return <svg aria-hidden="true" focusable="false" width={size} height={size} viewBox="0 0 48 48">
       <defs>
         <linearGradient id={`${id}-body`} x1="0" y1="0" x2="0" y2="1">
@@ -423,22 +432,22 @@ function GlassIcon({
           <stop offset="1" stopColor="#071321" stopOpacity="0.30" />
         </linearGradient>
         <linearGradient id={`${id}-glass`} x1="0" y1="0" x2="0" y2="1">
-          <stop stopColor="#F1F1F3" stopOpacity={PANE_OPACITY * paneScale} />
-          <stop offset="1" stopColor="#DADAE0" stopOpacity={PANE_OPACITY * paneScale} />
+          <stop stopColor="#F1F1F3" stopOpacity={paneAlpha * paneScale} />
+          <stop offset="1" stopColor="#DADAE0" stopOpacity={paneAlpha * paneScale} />
         </linearGradient>
         <linearGradient id={`${id}-edge`} gradientUnits="userSpaceOnUse" x1="0" y1="5" x2="0" y2="24">
           <stop stopColor="#fff" />
           <stop offset="1" stopColor="#fff" stopOpacity="0" />
         </linearGradient>
         <filter id={`${id}-frost`} x="-100%" y="-100%" width="400%" height="400%" colorInterpolationFilters="sRGB">
-          <feGaussianBlur stdDeviation="3" edgeMode="none" />
+          <feGaussianBlur stdDeviation={frostSigma} edgeMode="none" />
         </filter>
         <filter id={`${id}-rim`} x="-10%" y="-10%" width="120%" height="120%">
           <feMorphology in="SourceAlpha" operator="erode" radius="1" result="inside" />
           <feComposite in="SourceGraphic" in2="inside" operator="out" />
         </filter>
         <mask id={`${id}-rimMask`} maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">
-          <g filter={`url(#${id}-rim)`}>{panes}</g>
+          <g filter={`url(#${id}-rim)`}>{rimShapes}</g>
         </mask>
         <clipPath id={`${id}-panes`}>{panes}</clipPath>
         <mask id={`${id}-outside`} maskUnits="userSpaceOnUse" x="-4" y="-4" width="56" height="56">
